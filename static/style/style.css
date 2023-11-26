@@ -1,0 +1,15 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#container{
+    background-color: blue;
+}
+
+.p{
+    font-size: x-large;
+}
+
+table{
+    background-color: brown;
+}

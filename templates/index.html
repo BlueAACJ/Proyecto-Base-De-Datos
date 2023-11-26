@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+index
+{% endblock %}
+
+{% block main %}
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Crédito</th>
+            <th>Débito</th>
+            <th>Saldo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fila in rows %}
+            <tr>
+                <td>{{ fila.Nombre }}</td>
+                <td>{{ fila.Fecha }}</td>
+                <td>{{ fila.Descripcion }}</td>
+                <td>{{ fila.Credito }}</td>
+                <td>{{ fila.Debito }}</td>
+                <td>{{ fila.Saldo }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

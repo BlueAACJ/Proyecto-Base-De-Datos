@@ -1,0 +1,8 @@
+Instalacion de los paquetes
+pip install -r requirements.txt
+
+correr la pagina:
+flask run 
+
+verificar la conexion a la base de datos:
+python application.py
