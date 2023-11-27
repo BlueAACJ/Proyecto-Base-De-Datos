@@ -7,38 +7,37 @@ try:
     connection = pyodbc.connect('DRIVER={SQL Server};SERVER=DESKTOP-QSDIA4P\MSSQLSERVER01;DATABASE=GrupoTalse;Trusted_Connection=yes;')
     # db es el objeto para las ejecuciones de la base de datos 
     db = connection.cursor()
-    """  # Ejecucion de Query de prueba 
-    rows = db.execute("SELECT * FROM Tabla1")
-    #Impresion 
-    for row in rows:
-        print(row)
-    # Impresion de Error """
-
+    # Impresion de Error
 except Exception as ex:
     print("Error durante la conexión: {}".format(ex))
 
 app = Flask(__name__)
-app.secret_key = 'EdwingMaricon'  # Reemplaza con una clave secreta segura
+app.secret_key = 'MessiTheGoat'  # Reemplaza con una clave secreta segura
 
 @app.route('/', methods = ['GET', 'POST'])
 def login():
     session.clear()
     if request.method == 'POST':
-        usuario = request.form.get['usuario']
-        contrasena = request.form.get['contrasena']
+        usuario = request.form['usuario']
+        contrasena = request.form['contrasena']
+        rows = db.execute("select * from Administrador where Usuario = ? and PWDCOMPARE(?, contrasenia)= 1", usuario, contrasena)
 
-        # Buscar los datos en la base de datos en la tabla de administradores 
-        rows = db.execute("SELECT * FROM users WHERE username = :username AND hash = :hash", {"usuario": usuario, "hash": contrasena}).fetchall()
-        if len(rows) == 1:
-            session["id"] = rows[0]["id"]
+        # Obtiene las filas y las columnas
+        rows = db.fetchall()
+        columns = [column[0] for column in db.description]
+
+        # Convierte las filas a una lista de diccionarios
+        rows = [dict(zip(columns, row)) for row in rows]
+
+        if rows != []:
+            session["id"] = rows[0]["IdAdministrador"]
             return render_template("index.html")
         else:
-            flash('Contrasena o usuario equivocada vuelva a intentarlo')
-            return redirect(url_for('login'))
+            flash('Contrasena o usuario equivocada vuelva a intentarlo', 'error')
+            return render_template('login.html')
     else:
-        return render_template('login.html') 
+        return render_template('login.html')
     
-@app.route('/index', methods=['GET', 'POST'])
 def index():
     if request.method == "GET":
         # Ejecucion de Query de prueba 
@@ -64,6 +63,7 @@ def index():
         #rows = [dict(zip(columns, row)) for row in db.fetchall()]
         #return render_template('index.html', rows=rows)
     
+"""
 @app.route("/logout", methods = ['GET', 'POST'])
 def logout():
     # cerramos sesion 
@@ -82,3 +82,4 @@ def Historial():
 @app.route("/Prestamo_Detallado", methods = ['GET', 'POST'])
 def Historial():
     return "Prestamo_Detallado"
+"""

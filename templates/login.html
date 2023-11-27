@@ -15,12 +15,22 @@ login
         <button type="submit" id="iniciar_sesion" >Iniciar sesion</button>      
     </div>
     <!-- Flash de aviso al usuario sobre llenar el formulario -->
-    <div id="flash">
-        {% with messages = get_flashed_messages() %} {% if messages %}
-        <ul class="flashes">
-        {% for message in messages %} {{ message }} {% endfor %}
-        </ul>
-        {% endif %} {% endwith %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+        <div class="alert alert-{{ category }}" id="div_flash" >
+        {{ category }} {{ message }}
+        <input type="button" value=&#10006 onclick="removeFlash()" style="float: right">
+        </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     </form>
+    <script>
+    function removeFlash() {
+        const element = document.getElementById('div_flash');
+        element.remove();
+    }
+    </script>
 </body>
 {% endblock %}
