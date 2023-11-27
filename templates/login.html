@@ -1,21 +1,26 @@
-{% extends "layout.html" %}
-
-{% block title %}
-login
-{% endblock %}
-
+{% extends "layout.html" %} 
+{% block title %} 
+login 
+{% endblock %} 
 {% block main %}
 <body>
-    <h2>Iniciar Sesión</h2>
-    <form method="post" action="{{ url_for('login') }}">
-
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario" required><br>
-
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña" required><br>
-
-        <input type="submit" value="Iniciar Sesión">
+    <form action="/" method="post">
+    <div>
+        <input name="usuario" placeholder="Introduzca usuario   ">
+    </div>
+    <div>
+        <input type="password" name="contrasena" placeholder="contrasena">
+    </div>
+    <div>
+        <button type="submit" id="iniciar_sesion" >Iniciar sesion</button>      
+    </div>
+    <!-- Flash de aviso al usuario sobre llenar el formulario -->
+    <div id="flash">
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %} {{ message }} {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
     </form>
 </body>
 {% endblock %}
