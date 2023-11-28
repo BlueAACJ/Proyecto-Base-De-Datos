@@ -5,6 +5,109 @@ index
 {% endblock %}
 
 {% block main %}
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">GrupoTalse</a>
+    
+     <!-- Navbar-->
+    <ul class="navbar-nav ms-auto me-3 me-lg-4">
+        <!--User-->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <!-- Asegúrate de que el enlace tenga una función JavaScript o una URL válida para cerrar sesión -->
+                <li><a class="dropdown-item" href="login.html">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Prestamos</div>
+                    <a class="nav-link" href="index.html">
+                        <div class="sb-nav-link-icon"><i class="fas fa-money-check-alt"></i></div>
+                        Prestamos
+                    </a>
+                    <a class="nav-link" href="historial.html">
+                        <div class="sb-nav-link-icon"><i class="fa-regular fa-clipboard"></i></div>
+                        Historial
+                    </a> 
+                    <a class="nav-link" href="agregar.html">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-square-plus"></i></div>
+                        Agregar
+                    </a>             
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Prestamos</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Prestamos activos administrados por GrupoTalse</li>
+                </ol>
+                
+                <div class="card mb-4">
+                    
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Prestamos
+                    </div>
+                    
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                                <tr>
+                                    <th>Fecha de aprobación</th>
+                                    <th>Cédula</th>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Estado del prestamo</th>
+                                    <th>Monto</th>
+                                    <th>Ver detalles</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2011/04/25</td>
+                                    <td>366-000000-0000A</td>
+                                    <td>Juan Ismael</td>
+                                    <td>Lopez</td>
+                                    <td>Activo</td>
+                                    <td>C$3000</td>
+                                    <td><a href="detallePrestamo.html"><button class="btn btn-success ver-mas-btn">Ver más</button></a></td>
+                                </tr>
+                                <tr>
+                                    <td>2011/04/25</td>
+                                    <td>366-000000-0000A</td>
+                                    <td>Juan Ismael</td>
+                                    <td>Lopez</td>
+                                    <td>Activo</td>
+                                    <td>C$50000</td>
+                                    <td><button class="btn btn-success ver-mas-btn">Ver más</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2011/04/25</td>
+                                    <td>366-000001-0001A</td>
+                                    <td>Juan Ismael</td>
+                                    <td>Lopez</td>
+                                    <td>Activo</td>
+                                    <td>C$50000</td>
+                                    <td><button class="btn btn-success ver-mas-btn">Ver más</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
 <table>
     <thead>
         <tr>

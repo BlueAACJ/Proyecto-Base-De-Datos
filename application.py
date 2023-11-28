@@ -33,7 +33,7 @@ def login():
             session["id"] = rows[0]["IdAdministrador"]
             return render_template("index.html")
         else:
-            flash('Contrasena o usuario equivocada vuelva a intentarlo', 'error')
+            flash('Contrasena o usuario equivocado', 'error')
             return render_template('login.html')
     else:
         return render_template('login.html')
