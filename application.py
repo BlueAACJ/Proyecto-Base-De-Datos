@@ -37,33 +37,27 @@ def login():
             return render_template('login.html')
     else:
         return render_template('login.html')
-    
+
+@app.route('/index', methods = ['GET', 'POST'])
 def index():
     if request.method == "GET":
-        # Ejecucion de Query de prueba 
-        #db.execute("SELECT * FROM Tabla1")
-        # rows =  db.fetchall
-        # columns = [column[0] for column in db.description]
-        
-        """ CHAT GPT
         # Ejecuta la consulta SQL
-        db.execute("SELECT * FROM Tabla1")
+        db.execute("SELECT P.FechaDeAprobacion, C.CedulaColaborador, C.NombresColaborador, C.ApellidosColaborador, Pr.EstadoPrestamo, Pr.Capital AS Monto, S.IdColaborador FROM Prestamos AS P JOIN SolicitudesPrestamos AS S ON P.IdSolicitudesPrestamos = S.IdSolicitudesPrestamos JOIN Colaboradores AS C ON S.IdColaborador = C.IdColaborador JOIN Prestamos AS Pr ON S.IdSolicitudesPrestamos = Pr.IdSolicitudesPrestamos")
+        rows = db.fetchall()
 
         # Obtiene las filas y las columnas
-        rows = db.fetchall()
         columns = [column[0] for column in db.description]
-
-        # Convierte las filas a una lista de diccionarios
         rows = [dict(zip(columns, row)) for row in rows]
 
+        for i in range(len(rows)):
+            if rows[i]['EstadoPrestamo'] == 'A':
+                rows[i]['EstadoPrestamo'] = 'Activo'
+        
         # Pasa los datos a la plantilla HTML para ser renderizados
         return render_template('index.html', rows=rows)
-        """
+    else:
+        return render_template('index.html')
 
-        #rows = [dict(zip(columns, row)) for row in db.fetchall()]
-        #return render_template('index.html', rows=rows)
-    
-"""
 @app.route("/logout", methods = ['GET', 'POST'])
 def logout():
     # cerramos sesion 
@@ -71,15 +65,36 @@ def logout():
     # redireccionamos al login 
     return redirect("/")
 
-@app.route("/agregar_prestamo", methods = ['GET', 'POST'])
-def agregar_prestamo():
-    return "AGREGAR PRESTAMO"
+@app.route("/Prestamo_Detallado/<string:CedulaColaborador>", methods = ['GET', 'POST'])
+def Prestamo_Detallado(CedulaColaborador):
+    if request.method =="GET":
+        print(CedulaColaborador)
+
+        # verificacion existencia del colaborador 
+        rows = db.execute("select * from Colaboradores where CedulaColaborador = ?", CedulaColaborador)
+        rows = db.fetchall()
+        # Obtiene las filas y las columnas
+        columns = [column[0] for column in db.description]
+
+        # Convierte las filas a una lista de diccionarios
+        rows = [dict(zip(columns, row)) for row in rows]
+        print(rows)
+        
+        if rows != []:
+            db.execute("SELECT Pr.IdPrestamo,CONCAT(C.NombresColaborador, ' ', C.ApellidosColaborador) AS Colaborador, SP.PlazoDePago AS PlazoDePago, S.nombreDeSucursal AS Sucursal, S.direccionSucursal AS Direccion, Pr.Capital, Pr.Intereses, Pr.CosteTotal, Pr.Cuotas, Pr.EstadoPrestamo FROM Prestamos AS Pr JOIN SolicitudesPrestamos AS SP ON Pr.IdSolicitudesPrestamos = SP.IdSolicitudesPrestamos JOIN Colaboradores AS C ON SP.IdColaborador = C.IdColaborador JOIN Sucursales AS S ON C.IdSucursal = S.IdSucursal WHERE C.CedulaColaborador = ?",CedulaColaborador)
+
+            return render_template('prestamo_detallado.html')
+        else:
+            return render_template('Error.html')
+    else:
+        return render_template('prestamo_detallado.html')
 
 @app.route("/Historial", methods = ['GET', 'POST'])
 def Historial():
     return "Historial Historial"
 
-@app.route("/Prestamo_Detallado", methods = ['GET', 'POST'])
-def Historial():
-    return "Prestamo_Detallado"
+"""
+@app.route("/agregar_prestamo", methods = ['GET', 'POST'])
+def agregar_prestamo():
+    return "AGREGAR PRESTAMO"
 """

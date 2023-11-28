@@ -5,5 +5,58 @@ Prestamo Detallado
 {% endblock %}
 
 {% block main %}
-<h1>PRESTAMO Detallado</h1>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Prestamos / Detalle de Prestamo</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Prestamos administrados por GrupoTalse</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header row">
+                <div class="col-md-6 ">
+                    <ul class="list-unstyled">
+                        <li><b>IdPrestamo:</b> 00000</li>
+                        <li><b>Colaborador:</b> Juan Perez</li>
+                        <li><b>Forma de pago:</b> Quincenal</li>
+                        <li><b>Sucursal:</b> Mi Ranchito</li>
+                        <li><b>Direccion:</b> Rivas</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><b>Capital:</b> $4000</li>
+                        <li><b>Interés:</b> 1.7%</li>
+                        <li><b>Coste Total:</b> $999999</li>
+                        <li><b>Cuotas:</b> 3</li>
+                        <li><b>Estado:</b> Activo</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>  
+                            <th>Cuota</th>
+                            <th>Fecha de Pago</th>
+                            <th>Monto</th>
+                            <th>Capital</th>
+                            <th>Interes</th>
+                            <th>Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>27/11/23</td>
+                            <td>$80</td>
+                            <td>$0.8</td>
+                            <td>C$3000</td>
+                            <td>C$800</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}
