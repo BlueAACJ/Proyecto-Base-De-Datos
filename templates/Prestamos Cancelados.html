@@ -1,20 +1,20 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Index
+Prestamos Cancelados
 {% endblock %}
 
 {% block main %}
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Prestamos</h1>
+        <h1 class="mt-4">Prestamos Cancelados</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Prestamos activos administrados por GrupoTalse</li>
+            <li class="breadcrumb-item active">Prestamos cancelados administrados por GrupoTalse</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Prestamos
+                Historial
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -29,6 +29,17 @@ Index
                             <th>Ver detalles</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Fecha de aprobación</th>
+                            <th>Cédula</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Estado del prestamo</th>
+                            <th>Monto</th>
+                            <th>Ver detalles</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         {% for i in rows %}
                         <tr>

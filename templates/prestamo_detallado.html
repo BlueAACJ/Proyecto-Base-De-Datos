@@ -9,29 +9,32 @@ Prestamo Detallado
     <div class="container-fluid px-4">
         <h1 class="mt-4">Prestamos / Detalle de Prestamo</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Prestamos administrados por GrupoTalse</li>
+            <li class="breadcrumb-item active">Prestamo administrado por GrupoTalse</li>
         </ol>
+
         <div class="card mb-4">
+            {% for i in info %}
             <div class="card-header row">
                 <div class="col-md-6 ">
                     <ul class="list-unstyled">
-                        <li><b>IdPrestamo:</b> 00000</li>
-                        <li><b>Colaborador:</b> Juan Perez</li>
-                        <li><b>Forma de pago:</b> Quincenal</li>
-                        <li><b>Sucursal:</b> Mi Ranchito</li>
-                        <li><b>Direccion:</b> Rivas</li>
+                        <li><b>IdPrestamo:</b> {{ i.IdPrestamo }}</li>
+                        <li><b>Colaborador:</b> {{ i.Colaborador }}</li>
+                        <li><b>plazo de Pago:</b>{{ i.PlazoDePago }} meses </li>
+                        <li><b>Sucursal:</b>{{ i.Sucursal }}</li>
+                        <li><b>Direccion:</b> {{ i.Direccion }}</li>
                     </ul>
                 </div>
                 <div class="col-md-6">
                     <ul class="list-unstyled">
-                        <li><b>Capital:</b> $4000</li>
-                        <li><b>Interés:</b> 1.7%</li>
-                        <li><b>Coste Total:</b> $999999</li>
-                        <li><b>Cuotas:</b> 3</li>
-                        <li><b>Estado:</b> Activo</li>
+                        <li><b>Capital:</b> $ {{ i.Capital }}</li>
+                        <li><b>Interés:</b> {{ i.Intereses }}%</li>
+                        <li><b>Total a Pagar:</b> $ {{ i.CosteTotal }}</li>
+                        <li><b>Cuotas:</b> {{ i.Cuotas }}</li>
+                        <li><b>Estado:</b> {{ i.EstadoPrestamo }}</li>
                     </ul>
                 </div>
             </div>
+            {% endfor %}
             <div class="card-body">
                 <table class="table table-bordered">
                     <thead>
