@@ -99,23 +99,10 @@ def Prestamo_Detallado(CedulaColaborador):
 
             tabla = db.execute("SELECT P.FechaDeAprobacion, SP.PlazoDePago, P.Capital, P.Intereses FROM Prestamos P JOIN SolicitudesPrestamos SP ON P.IdSolicitudesPrestamos = SP.IdSolicitudesPrestamos JOIN Colaboradores C ON SP.IdColaborador = C.IdColaborador WHERE C.CedulaColaborador = ?",CedulaColaborador)
             tabla = db.fetchall()
-
-            print("*********************************",tabla)
-
             
-            """
-            columnstabla = [columntabla[0] for columntabla in db.description]
+            datos = calcular_pagos(tabla)
 
-            # Convierte las filas a una lista de diccionarios
-            # FechaDeAprobacion PlazoDePago Capital Intereses
-            tabla = [dict(zip(columnstabla, rowtabla)) for rowtabla in tabla]
-            print("******************************",tabla)"""
-
-            tabla = calcular_pagos(tabla)
-
-            print(tabla)
-
-            return render_template('prestamo_detallado.html',info=info)
+            return render_template('prestamo_detallado.html',info=info, datos=datos)
         else:
             return render_template('Error.html')
     else:

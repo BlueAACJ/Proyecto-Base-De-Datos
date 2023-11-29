@@ -48,14 +48,16 @@ Prestamo Detallado
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>27/11/23</td>
-                            <td>$80</td>
-                            <td>$0.8</td>
-                            <td>C$3000</td>
-                            <td>C$800</td>
-                        </tr>
+                        {% for dato in datos %}
+                            <tr>
+                                <td>{{  dato.contador }}</td>
+                                <td>{{ dato.Fecha }}</td>
+                                <td>${{ dato.Pagos }}</td>
+                                <td>${{ dato.Interes }}</td>
+                                <td>C${{ dato.Capital }}</td>
+                                <td>C${{ dato.Saldo }}</td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
