@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>GrupoTalse - Prestamos</title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="...">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="..."></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="..."></script>
+
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.html">GrupoTalse</a>
+        
+            <ul class="navbar-nav ms-auto me-3 me-lg-4">
+                <!--User-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        
+                        <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Prestamos</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePrestamos" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Prestamos
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePrestamos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="index.html">Activos</a>
+                                    <a class="nav-link" href="prestamosCancelados.html">Cancelados</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link" href="agregarPrestamo.html">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-square-plus"></i></div>
+                                Agregar Prestamo
+                            </a>  
+                            <!--Fin prestamos-->
+      
+                            <!--Solicitudes de prestamo-->
+                            <div class="sb-sidenav-menu-heading">Solicitudes Prestamo</div>
+                            <a class="nav-link" href="agregarSolicitud.html">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-square-plus"></i></div>
+                                Agregar Solicitud
+                            </a>
+
+                            <a class="nav-link" href="solicitudesEspera.html">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-envelope"></i></i></div>
+                                Solicitudes en espera
+                            </a>
+                            
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSolicitudes" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Solicitudes
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseSolicitudes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="solicitudesAceptadas.html">Aceptadas</a>
+                                    <a class="nav-link" href="solicitudesDenegadas.html">Denegadas</a>
+                                </nav>
+                            </div>
+                        </div>   
+                    </div>
+                </nav>
+            </div>
+            
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Prestamos / Agregar Préstamo</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Inserción de préstamos</li>
+                        </ol>
+                        
+                        
+                        <!--Mostramos los datos en spam usando jinja-->
+                        <form id="formInformacionDeSolicitud">
+                            <h4>Información de la Solicitud:</h4>
+                            <br>
+                            <div class="row">
+                                <!-- Primera columna -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="CedulaColaborador" class="form-label"><b>Cédula:</b></label>
+                                        <span>561-260590-1002L</span> 
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="NombresColaborador" class="form-label"><b>Nombres:</b></label>
+                                        <span>Juan Franciso</span>
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="ApellidosColaborador" class="form-label"><b>Apellidos:</b></label>
+                                        <span>Perez Lozano</span>
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="IdSucursal" class="form-label"><b>Sucursal:</b></label>
+                                        <span>Mi Viejo Ranchito Rivas</span>
+                                    </div>
+                                </div>
+                        
+                                <!-- Segunda columna -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="EstadoCrediticio" class="form-label"><b>Estado Crediticio:</b></label>
+                                        <span>No Debe</span>
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="MontoSolicitado" class="form-label"><b>Monto Solicitado:</b></label>
+                                        C$<span> 15000.00</span>
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="PlazoDePago" class="form-label"><b>Plazo de pago:</b></label>
+                                        <span>4</span> meses
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="TipoDeContrato" class="form-label"><b>Tipo de contrato:</b></label>
+                                        <span>Fijo</span>
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="MotivoPrestamo" class="form-label"><b>Motivo del préstamo:</b></label>
+                                        <span>Compra de electrodomésticos</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <!--Formulario de los detalles del prestamo-->
+                        <form id="formAgregarPrestamo">
+                            <h4>Detalles del Préstamo:</h4>
+                            <div class="row">
+                                <!-- Primera columna -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="fecha" class="form-label">Fecha:</label>
+                                        <input type="text" class="form-control" id="FechaDeAprobacion" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD">
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="montoAprobado" class="form-label">Monto Aprobado:</label>
+                                        <input type="text" class="form-control" id="Capital">
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="intereses" class="form-label">Intereses (%):</label>
+                                        <input type="text" class="form-control" id="Intereses">
+                                    </div>
+                                </div>
+                        
+                                <!-- Segunda columna -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="plazoPago" class="form-label">Plazo de Pago (meses):</label>
+                                        <input type="text" class="form-control" id="PlazoDePago_Meses">
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="costeTotal" class="form-label">Coste Total:</label>
+                                        <span id="CosteTotal"></span>
+                                    </div>
+                        
+                                    <div class="mb-3">
+                                        <label for="cuotas" class="form-label">Cuotas:</label>
+                                        <span id="Cuotas"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!--Botones de Generar prestamo y denegar solicitud-->
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex justify-content-center">
+                                    <br>
+                                    <button type="button" class="btn btn-primary">Generar préstamo</button>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-6">
+                                <div class="d-flex justify-content-center">
+                                    <br>
+                                    <button type="button" class="btn btn-danger">Denegar Solicitud</button>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                        </div>                        
+
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="..."></script>
+</body>
+</html>
