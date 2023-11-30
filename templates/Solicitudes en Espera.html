@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Solicitudes en Espera
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Solicitudes Prestamo / Solicitudes En Espera</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Solicitudes de prestamos en espera</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Solicitudes En Espera
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Fecha de Solicitud</th>
+                            <th>Cédula</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Monto Solicitado</th>
+                            <th>Plazo en meses</th>
+                            <th>Cuotas quincenales</th>
+                            <th>Aceptar</th>
+                            <th>Negar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rows in rows %}
+                        <tr>
+                            <td>{{ rows.FechaDeSolicitud }}</td>
+                            <td>{{ rows.CedulaColaborador }}</td>
+                            <td>{{ rows.NombresColaborador }}</td>
+                            <td>{{ rows.ApellidosColaborador }}</td>
+                            <td>C$ {{ rows.MontoSolicitado }}</td>
+                            <td>{{ rows.PlazoDePago }}</td>
+                            <td> {{ rows.PlazoDePago * 2 }}</td>
+                            <td><a href="/aceptar/{{rows.CedulaColaborador}}"><button class="btn btn-success">Aceptar</button></a></td>
+                            <td><a href="/negar/{{rows.CedulaColaborador}}"><button class="btn btn-danger">Negar</button></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

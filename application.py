@@ -14,7 +14,7 @@ except Exception as ex:
     print("Error durante la conexión: {}".format(ex))
 
 app = Flask(__name__)
-app.secret_key = 'MessiTheGoat'  # Reemplaza con una clave secreta segura
+app.secret_key = 'MessiTheGoat'
 
 @app.route('/', methods = ['GET', 'POST'])
 def login():
@@ -44,7 +44,7 @@ def login():
 def index():
     if request.method == "GET":
         # Ejecuta la consulta SQL
-        db.execute("SELECT P.FechaDeAprobacion, C.CedulaColaborador, C.NombresColaborador, C.ApellidosColaborador, Pr.EstadoPrestamo, Pr.Capital AS Monto, S.IdColaborador FROM Prestamos AS P JOIN SolicitudesPrestamos AS S ON P.IdSolicitudesPrestamos = S.IdSolicitudesPrestamos JOIN Colaboradores AS C ON S.IdColaborador = C.IdColaborador JOIN Prestamos AS Pr ON S.IdSolicitudesPrestamos = Pr.IdSolicitudesPrestamos")
+        db.execute("SELECT P.FechaDeAprobacion, C.CedulaColaborador, C.NombresColaborador, C.ApellidosColaborador, Pr.EstadoPrestamo, Pr.Capital AS Monto, S.IdColaborador FROM Prestamos AS P JOIN SolicitudesPrestamos AS S ON P.IdSolicitudesPrestamos = S.IdSolicitudesPrestamos JOIN Colaboradores AS C ON S.IdColaborador = C.IdColaborador JOIN Prestamos AS Pr ON S.IdSolicitudesPrestamos = Pr.IdSolicitudesPrestamos WHERE Pr.EstadoPrestamo = 'A'")
         rows = db.fetchall()
 
         # Obtiene las filas y las columnas
@@ -112,7 +112,7 @@ def Prestamo_Detallado(CedulaColaborador):
 def Prestamos_Cancelados():
     if request.method == "GET":
         # Ejecuta la consulta SQL
-        db.execute("SELECT SP.FechaDeSolicitud AS FechaDeAprobacion, C.CedulaColaborador, C.NombresColaborador, C.ApellidosColaborador, SP.EstadoSolicitud, SP.MontoSolicitado FROM SolicitudesPrestamos AS SP JOIN Colaboradores AS C ON SP.IdColaborador = C.IdColaborador WHERE SP.EstadoSolicitud = 'C';")
+        db.execute("SELECT P.FechaDeAprobacion, C.CedulaColaborador, C.NombresColaborador, C.ApellidosColaborador, Pr.EstadoPrestamo, Pr.Capital AS Monto, S.IdColaborador FROM Prestamos AS P JOIN SolicitudesPrestamos AS S ON P.IdSolicitudesPrestamos = S.IdSolicitudesPrestamos JOIN Colaboradores AS C ON S.IdColaborador = C.IdColaborador JOIN Prestamos AS Pr ON S.IdSolicitudesPrestamos = Pr.IdSolicitudesPrestamos WHERE Pr.EstadoPrestamo = 'C'")
         rows = db.fetchall()
 
         # Obtiene las filas y las columnas
@@ -120,16 +120,192 @@ def Prestamos_Cancelados():
         rows = [dict(zip(columns, row)) for row in rows]
 
         for i in range(len(rows)):
-            if rows[i]['EstadoPrestamo'] == 'A':
-                rows[i]['EstadoPrestamo'] = 'Activo'
-            else:
+            if rows[i]['EstadoPrestamo'] == 'C':
                 rows[i]['EstadoPrestamo'] = 'Cancelado'
+            else:
+                rows[i]['EstadoPrestamo'] = 'Activo'
         
         # Pasa los datos a la plantilla HTML para ser renderizados
         return render_template('Prestamos Cancelados.html', rows=rows)
     else:
         return render_template('Prestamos Cancelados.html')
 
-@app.route("/Agregar Prestamo", methods = ['GET', 'POST'])
-def Agregar_Prestamo():
-    return render_template("Agregar Prestamo.html")
+@app.route("/Agregar Solicitud", methods=['GET', 'POST'])
+def Agregar_Solicitud():
+    if request.method == 'GET':
+        return render_template("Agregar Solicitud.html")
+    elif request.method == 'POST':
+        CedulaColaborador = request.form.get('CedulaColaborador')
+        NombresColaborador = request.form.get('NombresColaborador')
+        ApellidosColaborador = request.form.get('ApellidosColaborador')
+        SalarioColaborador = request.form.get('SalarioColaborador')
+        IdSucursal = request.form.get('IdSucursal')
+        TipoDeContrato = request.form.get('TipoDeContrato')
+        EstadoCrediticio = request.form.get('EstadoCrediticio')
+        CorreoColaborador = request.form.get('CorreoColaborador')
+        NumeroTelefonoColaborador = request.form.get('NumeroTelefonoColaborador')
+
+        # SEGUNDO FORM
+        FechaDeSolicitud = request.form.get('FechaDeSolicitud')
+        MontoSolicitado = request.form.get('MontoSolicitado')
+        PlazoDePago = request.form.get('PlazoDePago')
+        MotivoPrestamo = request.form.get('MotivoPrestamo')
+
+        if CedulaColaborador != ''  and NombresColaborador != '' and ApellidosColaborador != '' and SalarioColaborador != '' and CorreoColaborador != '' and NumeroTelefonoColaborador != '' and FechaDeSolicitud != '' and MontoSolicitado != '' and PlazoDePago != '' and MotivoPrestamo != '':
+            # Insersion Base de Datos
+            db.execute("DECLARE @IdColaborador INT;INSERT INTO Colaboradores (CedulaColaborador, NombresColaborador, ApellidosColaborador, SalarioColaborador, TipoDeContrato, EstadoCrediticio, CorreoColaborador, NumeroTelefonoColaborador, IdSucursal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);SET @IdColaborador = SCOPE_IDENTITY();INSERT INTO SolicitudesPrestamos (FechaDeSolicitud, MontoSolicitado, PlazoDePago, MotivoPrestamo, EstadoSolicitud, IdColaborador, IdAdministrador) VALUES (?, ?, ?, ?, 'E', @IdColaborador, 1);", CedulaColaborador, NombresColaborador, ApellidosColaborador, SalarioColaborador, TipoDeContrato, EstadoCrediticio, CorreoColaborador, NumeroTelefonoColaborador, IdSucursal, FechaDeSolicitud, MontoSolicitado, PlazoDePago, MotivoPrestamo)
+            db.commit()
+            return redirect(url_for('index'))
+        else:
+            return render_template("Agregar Solicitud.html")
+
+@app.route("/Solicitud en Espera", methods = ['GET', 'POST'])
+def SolicitudenEspera():
+    if request.method == "GET":
+        # Ejecuta la consulta SQL
+        db.execute("SELECT SP.FechaDeSolicitud, C.CedulaColaborador, C.NombresColaborador, C.ApellidosColaborador, SP.MontoSolicitado, SP.PlazoDePago, SP.IdColaborador,SP.IdSolicitudesPrestamos FROM SolicitudesPrestamos AS SP JOIN Colaboradores AS C ON SP.IdColaborador = C.IdColaborador WHERE SP.EstadoSolicitud = 'E'")
+        rows = db.fetchall()
+
+        # Obtiene las filas y las columnas
+        columns = [column[0] for column in db.description]
+        rows = [dict(zip(columns, row)) for row in rows]
+
+        # Pasa los datos a la plantilla HTML para ser renderizados
+        return render_template("Solicitudes en Espera.html", rows=rows)
+    else:
+        return render_template("Solicitudes en Espera.htm")
+
+@app.route("/aceptar/<string:CedulaColaborador>", methods = ['GET', 'POST'])
+def aceptar(CedulaColaborador):
+    db.execute("UPDATE SolicitudesPrestamos SET EstadoSolicitud = 'A' WHERE IdColaborador IN (SELECT IdColaborador FROM Colaboradores WHERE CedulaColaborador = ?);",CedulaColaborador)
+
+    query1="""
+    DECLARE @CedulaColaborador varchar(25) = ?; -- Reemplaza con la cédula del colaborador
+-- Obtener IdSolicitudesPrestamos correspondiente a la cédula del colaborador
+DECLARE @IdSolicitudPrestamo INT;
+SET @IdSolicitudPrestamo = (SELECT IdSolicitudesPrestamos 
+                            FROM SolicitudesPrestamos 
+                            WHERE IdColaborador = (SELECT IdColaborador FROM Colaboradores WHERE CedulaColaborador = @CedulaColaborador));
+
+-- Obtener los valores necesarios para la creación del préstamo
+DECLARE @FechaDeAprobacion DATE;
+DECLARE @Capital DECIMAL(15,2);
+DECLARE @PlazoDePago_Meses INT;
+
+SET @FechaDeAprobacion = (SELECT FechaDeSolicitud FROM SolicitudesPrestamos WHERE IdSolicitudesPrestamos = @IdSolicitudPrestamo);
+SET @Capital = (SELECT MontoSolicitado FROM SolicitudesPrestamos WHERE IdSolicitudesPrestamos = @IdSolicitudPrestamo);
+SET @PlazoDePago_Meses = (SELECT PlazoDePago FROM SolicitudesPrestamos WHERE IdSolicitudesPrestamos = @IdSolicitudPrestamo);
+
+-- Calcular otros valores necesarios
+DECLARE @Intereses DECIMAL(15,2);
+DECLARE @Cuotas INT;
+DECLARE @CosteTotal DECIMAL(15,2);
+
+SET @Intereses = 0.10; -- 10.00%
+SET @Cuotas = @PlazoDePago_Meses * 2;
+SET @CosteTotal = @Capital * (1 + @Intereses * @PlazoDePago_Meses);
+
+-- Insertar un nuevo registro en la tabla de préstamos
+INSERT INTO Prestamos (FechaDeAprobacion, Capital, Intereses, CosteTotal, Cuotas, PlazoDePago_Meses, EstadoPrestamo, IdSolicitudesPrestamos, IdAdministrador)
+VALUES (
+    @FechaDeAprobacion,
+    @Capital,
+    @Intereses,
+    @CosteTotal,
+    @Cuotas,
+    @PlazoDePago_Meses,
+    'A', -- EstadoPrestamo (Aprobado)
+    @IdSolicitudPrestamo,
+    (SELECT IdAdministrador FROM SolicitudesPrestamos WHERE IdSolicitudesPrestamos = @IdSolicitudPrestamo)
+);
+    """
+    db.execute(query1,CedulaColaborador)
+
+    return redirect(url_for('index'))
+
+@app.route("/Solicitud Aceptada", methods=['GET', 'POST'])
+def Solicitud_Aceptada():
+    if request.method == "GET":
+            # Ejecuta la consulta SQL para obtener las solicitudes aceptadas
+        query = """
+            SELECT 
+                SP.FechaDeSolicitud AS FechaDeAprobacion,
+                C.CedulaColaborador,
+                C.NombresColaborador,
+                C.ApellidosColaborador,
+                SP.EstadoSolicitud,
+                SP.MontoSolicitado,
+                P.Capital,
+                P.PlazoDePago_Meses,
+                P.Cuotas
+            FROM 
+                SolicitudesPrestamos SP 
+            JOIN 
+                Colaboradores C ON SP.IdColaborador = C.IdColaborador 
+            LEFT JOIN 
+                Prestamos P ON SP.IdSolicitudesPrestamos = P.IdSolicitudesPrestamos
+            WHERE 
+                SP.EstadoSolicitud = 'A';
+        """
+        db.execute(query)
+        rows = db.fetchall()
+
+            # Obtiene las filas y las columnas
+        columns = [column[0] for column in db.description]
+        rows = [dict(zip(columns, row)) for row in rows]
+
+        print(rows)
+
+        for i in range(len(rows)):
+            if rows[i]['EstadoSolicitud'] == 'A':
+                rows[i]['EstadoSolicitud'] = 'Aceptada'
+
+            # Pasa los datos a la plantilla HTML para ser renderizados
+        return render_template('Solicitud Aceptada.html', rows=rows)
+    
+    else:
+        return render_template('Solicitud Aceptada.html')
+
+@app.route("/Solicitud Denegadas", methods=['GET', 'POST'])
+def solicitud_Denegada():
+    if request.method == "GET":
+        # Ejecuta la consulta SQL para obtener las solicitudes denegadas
+        query = """
+        SELECT
+            SP.FechaDeSolicitud,
+            C.CedulaColaborador,
+            C.NombresColaborador,
+            C.ApellidosColaborador,
+            SP.MontoSolicitado,
+            SP.PlazoDePago
+        FROM
+            SolicitudesPrestamos AS SP
+        JOIN
+            Colaboradores AS C ON SP.IdColaborador = C.IdColaborador
+        WHERE
+            SP.EstadoSolicitud = 'D'
+        """
+        db.execute(query)
+        rows = db.fetchall()
+
+        # Obtiene las filas y las columnas
+        columns = [column[0] for column in db.description]
+        rows = [dict(zip(columns, row)) for row in rows]
+
+        # Pasa los datos a la plantilla HTML para ser renderizados
+        return render_template('Solicitud Denegadas.html', rows=rows)
+    
+    else:
+        return render_template('Solicitud Denegadas.html')
+
+@app.route("/negar/<string:CedulaColaborador>", methods = ['GET', 'POST'])
+def negar(CedulaColaborador):
+    db.execute("UPDATE SolicitudesPrestamos SET EstadoSolicitud = 'D' WHERE IdColaborador IN (SELECT IdColaborador FROM Colaboradores WHERE CedulaColaborador = ?);",CedulaColaborador)
+    db.commit()
+    return redirect(url_for('index'))
+
+@app.route("/GenerarPrestamo/<string:CedulaColaborador>", methods = ['GET', 'POST'])
+def GenerarPrestamo(CedulaColaborador):
+
+    db.execute("UPDATE Prestamos SET EstadoPrestamo = 'P' FROM Prestamos AS Pr INNER JOIN SolicitudesPrestamos AS SP ON Pr.IdSolicitudesPrestamos = SP.IdSolicitudesPrestamos INNER JOIN Colaboradores AS C ON SP.IdColaborador = C.IdColaborador WHERE C.CedulaColaborador = ? AND Pr.EstadoPrestamo = 'A' ",CedulaColaborador )
+    return redirect(url_for('index'))

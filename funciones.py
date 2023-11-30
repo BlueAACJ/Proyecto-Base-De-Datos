@@ -18,7 +18,7 @@ def calcular_pagos(datos):
             if saldo < pago_por_dia:
                 pago = saldo
                 interes = pago * intereses / pago_total
-                capital = pago
+                capital = pago 
             else:
                 pago = pago_por_dia
                 interes = pago * intereses / pago_total

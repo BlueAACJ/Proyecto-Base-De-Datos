@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Agregar Solicitud
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Solicitud de Prestamo / Agregar Solicitud</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Inserción de Solicitudes de prestamo</li>
+        </ol>
+        <form action="/Agregar Solicitud" method="post">
+            <h4>Información del Colaborador:</h4>
+            <div class="row">
+                <!-- Primera columna -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="numeroCedula" class="form-label" >Número de cédula:</label>
+                        <input type="text" class="form-control" name="CedulaColaborador">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombres" class="form-label">Nombres:</label>
+                        <input type="text" class="form-control" name="NombresColaborador">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidos" class="form-label">Apellidos:</label>
+                        <input type="text" class="form-control" name="ApellidosColaborador">
+                    </div>
+                    <div class="mb-3">
+                        <label for="salario" class="form-label">Salario:</label>
+                        <input type="text" class="form-control" name="SalarioColaborador">
+                    </div>
+                    <!--Te van a retornar el numero (value = numero) que equivale el IdSucursal en la base de datos-->
+                    <div class="mb-3">
+                        <label for="sucursal" class="form-label">Sucursal:</label>
+                        <select class="form-select" type="text" name="IdSucursal">
+                            <option value="1">Mi Viejo Ranchito Rivas</option>
+                            <option value="2">Mi Viejo Ranchito Catarina</option>
+                            <option value="3">Mi Viejo Ranchito Masaya</option>
+                            <option value="4">Mi Viejo Ranchito Galerias</option>
+                            <option value="5">El Zocalo Masaya</option>
+                            <option value="6">El Zocalo Villa Fontana</option>
+                            <option value="7">El Zocalo Galerias</option>
+                            <option value="8">La Nani Cafe Rivas</option>
+                            <option value="9">La Nani Cafe Masaya</option>
+                            <option value="10">Setenta Grados Rivas</option>
+                            <option value="11">La Sureña Rivas</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Segunda columna -->
+                <div class="col-md-6">
+                    <!--Tipo de contrato va a retornar value=F para Fijo y value = T para temporales-->
+                    <div class="mb-3">
+                        <label for="tipoContrato" class="form-label">Tipo de contrato:</label>
+                        <select class="form-select" name="TipoDeContrato" type="text">
+                            <option value="F">Fijo</option>
+                            <option value="T">Temporal</option>
+                        </select>
+                    </div>
+                    <!--Estado crediticio del colaborador va a retornar value = 1 para Debe y value = 0 para no debe-->
+                    <div class="mb-3">
+                        <label for="estadoCrediticio" class="form-label">Estado Crediticio:</label>
+                        <select class="form-select" name="EstadoCrediticio" type="text">
+                            <option value="1">Debe</option>
+                            <option value="0">No debe</option>
+                        </select>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="correoElectronico" class="form-label">Correo electrónico:</label>
+                        <input type="text" class="form-control" name="CorreoColaborador">
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono:</label>
+                        <input type="text" class="form-control" name="NumeroTelefonoColaborador">
+                    </div>
+                </div>
+            </div>
+        <!--</form>
+        Formulario con la informacion de la solicitud
+        Alejandro recorda que al generar la solicitud se genera en estado E:espera
+        Tambien hay que hacer una query para saber el id del nuevo colaborador y el id del administrador
+        porque son parte de la tabla Solicitudes de Prestamo
+
+        <form action="/Agregar Solicitud" method="post">        -->
+            <h4>Información de la Solicitud:</h4>
+            <div class="row">
+                <!-- Primera columna -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="fechaSolicitud" class="form-label">Fecha de solicitud:</label>
+                        <input type="text" class="form-control" name="FechaDeSolicitud">
+                    </div>
+                    <div class="mb-3">
+                        <label for="montoSolicitado" class="form-label">Monto solicitado:</label>
+                        <input type="text" class="form-control" name="MontoSolicitado">
+                    </div>
+                    <div class="mb-3">
+                        <label for="plazoPago" class="form-label">Plazo de pago:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="PlazoDePago">
+                            <span class="input-group-text">meses</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Segunda columna -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="motivoPrestamo" class="form-label">Motivo de préstamo (máximo 50 palabras):</label>
+                        <textarea class="form-control" name="MotivoPrestamo" rows="4" maxlength="250" type="text"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Generar Solicitud</button>
+            </div>
+        </form>
+        <!--Boton de genera la solicitud-->
+        <br>
+    </div>
+</main>
+{% endblock %}

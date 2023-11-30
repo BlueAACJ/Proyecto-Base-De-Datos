@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Solicitudes Aceptadas
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Solicitudes / Solicitudes Aceptadas</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Solicitudes de prestamos aprobadas por GrupoTalse</li>
+        </ol>
+        
+        <div class="card mb-4">
+            
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Solicitudes Aprobadas
+            </div>
+            
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Fecha de aprobación</th>
+                            <th>Cédula</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Monto Aprobado</th>
+                            <th>Plazo en meses</th>
+                            <th>Cuotas quincenales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in rows %}
+                            <tr>
+                                <td>{{ row.FechaDeAprobacion }}</td>
+                                <td>{{ row.CedulaColaborador }}</td>
+                                <td>{{ row.NombresColaborador }}</td>
+                                <td>{{ row.ApellidosColaborador }}</td>
+                                <td>{{ row.Capital }}</td>
+                                <td>{{ row.PlazoDePago_Meses }}</td>
+                                <td>{{ row.Cuotas }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

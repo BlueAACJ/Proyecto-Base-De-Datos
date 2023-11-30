@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Solicitudes Denegadas
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Solicitudes / Solicitudes Denegadas</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Solicitudes de prestamos Denegadas por GrupoTalse</li>
+        </ol>
+        
+        <div class="card mb-4">
+            
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Solicitudes Denegadas
+            </div>
+            
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Fecha de Solicitud</th>
+                            <th>Cédula</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Monto Denegado</th>
+                            <th>Plazo en meses</th>
+                            <th>Cuotas quincenales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rows in rows %}
+                            <tr>
+                                <td>{{ rows.FechaDeSolicitud }}</td>
+                                <td>{{ rows.CedulaColaborador }}</td>
+                                <td>{{ rows.NombresColaborador }}</td>
+                                <td>{{ rows.ApellidosColaborador }}</td>
+                                <td>{{ rows.MontoSolicitado }}</td>
+                                <td>{{ rows.PlazoDePago }}</td>
+                                <td>{{ rows.PlazoDePago * 2 }}</td>                                
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
