@@ -1,14 +1,14 @@
 --- INSERTANDO LOS ADMINISTRADORES
 
 --	INSERTANDO ADMINISTRADORES
---	usuario: alejandro  contraseña: admin1
---  usuario: edwing	    contraseña: admin2
---  usuario: carlos     contraseña: admin3
+--	usuario: alejandro  contraseï¿½a: admin1
+--  usuario: edwing	    contraseï¿½a: admin2
+--  usuario: carlos     contraseï¿½a: admin3
 
 INSERT INTO Administrador (CedulaAdmimistrador, NombresAdministrador, ApellidosAdministrador, CorreoAdministrador, NumeroTelefonoAdministrador, Usuario, Contrasenia, IdSucursal)
 VALUES ('121-160803-1001N', 'Edwing Antonio', 'Jarquin Fitoria', 'edwing@uni.com', '00001111', 'edwing', PWDENCRYPT('admin1'), 1),
-	   ('366-000011-1000H', 'Alejandro Antonio', 'Castillo Jacamo', 'bluemonster@gmail.com', '11110000','alejandro',PWDENCRYPT('admin2'),2),
-	   ('561-210703-1040L', 'Carlos Ernesto', 'Mora Rodriguez', 'cmora2023@gmail.com', '10101010','carlos',PWDENCRYPT('admin3'),7);
+	    ('366-000011-1000H', 'Alejandro Antonio', 'Castillo Jacamo', 'bluemonster@gmail.com', '11110000','alejandro',PWDENCRYPT('admin2'),2),
+	    ('561-210703-1040L', 'Carlos Ernesto', 'Mora Rodriguez', 'cmora2023@gmail.com', '10101010','carlos',PWDENCRYPT('admin3'),7);
 
 -- VER INFORMACION DE LOS ADMINISTRADORES INSERTADOS
 /*

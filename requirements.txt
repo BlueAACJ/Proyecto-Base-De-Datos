@@ -1,11 +1,6 @@
 Flask
-Flask-Session
-psycopg2-binary
-Flask-WTF 
-Flask-SQLAlchemy 
-Flask-Bcrypt
 python-dotenv
 jinja2
-requests 
-pyodbc 
+requests
+pyodbc
 passlib

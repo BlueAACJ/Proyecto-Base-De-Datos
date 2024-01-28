@@ -1,8 +1,5 @@
-Instalacion de los paquetes
+Instalacion de los paquetes necesarios para la ejecucion del prototipo
 pip install -r requirements.txt
 
-correr la pagina:
-flask run 
-
-verificar la conexion a la base de datos:
-python application.py
+ejecutar el prototipo:
+flask run

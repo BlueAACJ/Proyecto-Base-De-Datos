@@ -22,14 +22,14 @@ SELECT SP.FechaDeSolicitud, C.CedulaColaborador, C.NombresColaborador, C.Apellid
 UPDATE SolicitudesPrestamos SET EstadoSolicitud = 'A' WHERE IdColaborador IN (SELECT IdColaborador FROM Colaboradores WHERE CedulaColaborador = "?");",CedulaColaborador)
 
     query1="""
-    DECLARE @CedulaColaborador varchar(25) = "?"; -- Reemplaza con la cédula del colaborador
--- Obtener IdSolicitudesPrestamos correspondiente a la cédula del colaborador
+    DECLARE @CedulaColaborador varchar(25) = "?"; -- Reemplaza con la cï¿½dula del colaborador
+-- Obtener IdSolicitudesPrestamos correspondiente a la cï¿½dula del colaborador
 DECLARE @IdSolicitudPrestamo INT;
 SET @IdSolicitudPrestamo = (SELECT IdSolicitudesPrestamos 
                             FROM SolicitudesPrestamos 
                             WHERE IdColaborador = (SELECT IdColaborador FROM Colaboradores WHERE CedulaColaborador = @CedulaColaborador));
 
--- Obtener los valores necesarios para la creación del préstamo
+-- Obtener los valores necesarios para la creaciï¿½n del prï¿½stamo
 DECLARE @FechaDeAprobacion DATE;
 DECLARE @Capital DECIMAL(15,2);
 DECLARE @PlazoDePago_Meses INT;
@@ -45,9 +45,9 @@ DECLARE @CosteTotal DECIMAL(15,2);
 
 SET @Intereses = 0.10; -- 10.00%
 SET @Cuotas = @PlazoDePago_Meses * 2;
-SET @CosteTotal = @Capital * (1 + @Intereses * @PlazoDePago_Meses);
+SET @CosteTotal = @Capital + ( @Intereses * @Capital);
 
--- Insertar un nuevo registro en la tabla de préstamos
+-- Insertar un nuevo registro en la tabla de prï¿½stamos
 INSERT INTO Prestamos (FechaDeAprobacion, Capital, Intereses, CosteTotal, Cuotas, PlazoDePago_Meses, EstadoPrestamo, IdSolicitudesPrestamos, IdAdministrador)
 VALUES (
     @FechaDeAprobacion,
@@ -62,7 +62,7 @@ VALUES (
 );
 
 ---SOLICITUD ACEPTADA
- SELECT 
+SELECT 
                 SP.FechaDeSolicitud AS FechaDeAprobacion,
                 C.CedulaColaborador,
                 C.NombresColaborador,
