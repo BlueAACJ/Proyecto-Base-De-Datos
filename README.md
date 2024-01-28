@@ -30,17 +30,16 @@ Diagrama SQLServer:
 
 ## Tecnologías Utilizadas
 Lenguajes:
-- ![Js Logo](screenshots/js.png  =100x100) Js
 <img src="screenshots/js.png" width="100" height="100"> Js
-- ![Python Logo](screenshots/python.png  =100x100) Python
 <img src="screenshots/python.png" width="100" height="100"> Python
 
 Framework:
-- ![Flask Logo](screenshots/flask.png =100x100) Flask
+<img src="screenshots/flask.png" width="100" height="100"> Flask
 
 Base de Datos:
-- ![SQLServer Logo](screenshots/SQLServer.png =100x100) SQLServer
+<img src="screenshots/SQLServer.png" width="100" height="100"> SQLServer
 
 Herramientas: 
-- ![Git Logo](screenshots/git.png =100x100) Git
-
+<img src="screenshots/git.png" width="100" height="100"> Git
+<img src="screenshots/html.png" width="100" height="100"> HTML
+<img src="screenshots/css.png" width="100" height="100"> CSS
