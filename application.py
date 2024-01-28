@@ -5,7 +5,8 @@ from funciones import calcular_pagos
 #Conexion Base de Datos TODOS DEBEN TERNER LA MISMA BASE DE DATOS Y CAMBIAR El NOMBRES DE USUARIO PARA QUE SIRVA EN SU MAQUINA  
 try:
     # conexion a la Base de Datos 
-    connection = pyodbc.connect('DRIVER={SQL Server};SERVER=DESKTOP-QSDIA4P\MSSQLSERVER01;DATABASE=GrupoTalse;Trusted_Connection=yes;')
+    #                            DRIVER={SQL Server};SERVER=NombreDeTuServidor\MSSQLSERVER01;DATABASE=NombreDeLaBaseDeDatos(En este caso Grupo Talse);Trusted_Connection=yes;
+    connection = pyodbc.connect('DRIVER={SQL Server};SERVER=""\"";DATABASE="";Trusted_Connection=yes;')
     # db es el objeto para las ejecuciones de la base de datos 
     db = connection.cursor()
     # Impresion de Error
