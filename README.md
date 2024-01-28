@@ -13,32 +13,32 @@ Préstamos: Visualización de préstamos activos y cancelados con información d
 ![Préstamos](screenshots/Prestamos.png)
 
 Préstamos Detallados:  Visualización de informacion en general del prestamo como fechas de pago, monto, intereses, etc. 
-![PréstamoDetallado](screenshots/Detalles Prestamo.png)
+![PréstamoDetallado](screenshots/DetallesPrestamo.png)
 
 Agregar Solicitud: Formulario para solicitar préstamos.
-![AgregarPréstamos](screenshots/Solicitud de prestamo.png)
+![AgregarPréstamos](screenshots/SolicitudDePrestamo.png)
 
 Solicitudes en Espera: Sección para que el administrador acepte o rechace solicitudes en proceso.
-![PréstamosEnEspera](screenshots/Solicitudes En Espera.png)
+![PréstamosEnEspera](screenshots/SolicitudesEnEspera.png)
 
 Historial de Solicitudes: Información de solicitudes aceptadas y rechazadas.
-![PréstamosAceptamos](screenshots/Solicitudes Aceptadas.png)
-![PréstamosDenegados](screenshots/Solicitudes Denegadas.png)
+![PréstamosAceptamos](screenshots/SolicitudesAceptadas.png)
+![PréstamosDenegados](screenshots/SolicitudesDenegadas.png)
 
 Diagrama SQLServer:
 ![Captura](screenshots/Captura.png)
 
 ## Tecnologías Utilizadas
 Lenguajes:
-- ![Js Logo](screenshots/js.png) Js
-- ![Python Logo](screenshots/Python.png) Python
+- ![Js Logo](screenshots/js.png  =100x100) Js
+- ![Python Logo](screenshots/python.png  =100x100) Python
 
 Framework:
-- ![Flask Logo](screenshots/Flask.png) Flask
+- ![Flask Logo](screenshots/flask.png =100x100) Flask
 
 Base de Datos:
-- ![SQLServer Logo](screenshots/SQLServer.png) SQLServer
+- ![SQLServer Logo](screenshots/SQLServer.png =100x100) SQLServer
 
 Herramientas: 
-- ![Git Logo](screenshots/git.png) Git
+- ![Git Logo](screenshots/git.png =100x100) Git
 
