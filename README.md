@@ -31,7 +31,9 @@ Diagrama SQLServer:
 ## Tecnologías Utilizadas
 Lenguajes:
 - ![Js Logo](screenshots/js.png  =100x100) Js
+<img src="screenshots/js.png" width="100" height="100"> Js
 - ![Python Logo](screenshots/python.png  =100x100) Python
+<img src="screenshots/python.png" width="100" height="100"> Python
 
 Framework:
 - ![Flask Logo](screenshots/flask.png =100x100) Flask
