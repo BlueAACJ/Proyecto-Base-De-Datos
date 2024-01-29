@@ -26,20 +26,20 @@ Historial de Solicitudes: Información de solicitudes aceptadas y rechazadas.
 ![PréstamosDenegados](screenshots/SolicitudesDenegadas.png)
 
 Diagrama SQLServer:
-![Captura](screenshots/Captura.png)
+![Captura](screenshots/captura.png)
 
 ## Tecnologías Utilizadas
-Lenguajes:
-<img src="screenshots/js.png" width="100" height="100"> Js
-<img src="screenshots/python.png" width="100" height="100"> Python
+Lenguajes:<br />
+<img src="screenshots/js.png" width="100" height="100"> Js<br />
+<img src="screenshots/python.png" width="100" height="100"> Python<br />
 
-Framework:
-<img src="screenshots/flask.png" width="100" height="100"> Flask
+Framework:<br />
+<img src="screenshots/flask.png" width="100" height="80"> Flask<br />
 
-Base de Datos:
-<img src="screenshots/SQLServer.png" width="100" height="100"> SQLServer
+Base de Datos:<br />
+<img src="screenshots/SQLServer.png" width="100" height="100"> SQLServer<br />
 
-Herramientas: 
-<img src="screenshots/git.png" width="100" height="100"> Git
-<img src="screenshots/html.png" width="100" height="100"> HTML
-<img src="screenshots/css.png" width="100" height="100"> CSS
+Herramientas: <br />
+<img src="screenshots/git.png" width="100" height="100"> Git<br />
+<img src="screenshots/html.png" width="100" height="100"> HTML<br />
+<img src="screenshots/css.png" width="100" height="100"> CSS<br />
