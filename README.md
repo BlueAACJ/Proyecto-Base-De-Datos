@@ -34,7 +34,7 @@ Lenguajes:<br />
 <img src="screenshots/python.png" width="100" height="100"><br />
 
 Framework:<br />
-<img src="screenshots/flask.png" width="100" height="80"><br />
+<img src="screenshots/flask.png" width="120" height="80"><br />
 
 Base de Datos:<br />
 <img src="screenshots/SQLServer.png" width="100" height="100"><br />
