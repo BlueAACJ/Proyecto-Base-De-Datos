@@ -26,7 +26,7 @@ Historial de Solicitudes: Información de solicitudes aceptadas y rechazadas.
 ![PréstamosDenegados](screenshots/SolicitudesDenegadas.png)
 
 Diagrama SQLServer:
-![Captura](screenshots/Captura.png)
+![Captura](screenshots/Captura.PNG)
 
 ## Tecnologías Utilizadas
 Lenguajes:<br />
@@ -42,4 +42,4 @@ Base de Datos:<br />
 Herramientas: <br />
 <img src="screenshots/git.png" width="120" height="80">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="screenshots/html.png" width="100" height="100">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="screenshots/css.png" width="100" height="100">
+<img src="screenshots/css.png" width="75" height="100">
