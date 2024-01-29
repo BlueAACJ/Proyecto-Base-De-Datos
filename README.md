@@ -30,7 +30,7 @@ Diagrama SQLServer:
 
 ## Tecnologías Utilizadas
 Lenguajes:<br />
-<img src="screenshots/js.png" width="100" height="100"> <br />
+<img src="screenshots/js.png" width="100" height="100"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="screenshots/python.png" width="100" height="100"><br />
 
 Framework:<br />
@@ -40,6 +40,6 @@ Base de Datos:<br />
 <img src="screenshots/SQLServer.png" width="100" height="100"><br />
 
 Herramientas: <br />
-<img src="screenshots/git.png" width="100" height="100"><br />
-<img src="screenshots/html.png" width="100" height="100"><br />
-<img src="screenshots/css.png" width="100" height="100"><br />
+<img src="screenshots/git.png" width="100" height="100">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="screenshots/html.png" width="100" height="100">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="screenshots/css.png" width="100" height="100">
