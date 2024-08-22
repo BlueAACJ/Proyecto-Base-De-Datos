@@ -1,0 +1,18 @@
+- Gestor de Base de Datos: 
+    SQLServer
+
+- .env
+    Variables de entorno necesarias para la ejecucion del prototipo:
+
+    FLASK_APP=application.py
+    Indica a Flask qué archivo debe ejecutar para iniciar la aplicación.
+
+    FLASK_DEBUG=1
+    Activa o desactiva el modo de depuración en Flask. 1 activo 0 desactivo 
+
+- Instalacion de los paquetes necesarios para la ejecucion del prototipo:
+    python.exe -m pip install --upgrade pip
+    pip install -r requirements.txt
+
+- Ejecutar el prototipo:
+    flask run
